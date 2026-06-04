@@ -11,7 +11,21 @@
 const _ = require('lodash');
 const products = require('../data/products.json');
 
-const lodashSolution = null;
+const lodashSolution = _.chain(products)
+  .reject(['discount', false])
+  .forEach((product) => {
+    product.marginPercent =
+      Math.round(((product.price - product.cost) / product.price) * 1000) / 10;
+  })
+  .orderBy('marginPercent', 'desc')
+  .take(8)
+  .map((product) => ({
+    id: product.id,
+    name: product.name,
+    category: product.category,
+    marginPercent: product.marginPercent,
+  }))
+  .value();
 
 console.log(lodashSolution);
 
