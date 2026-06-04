@@ -15,7 +15,20 @@
 const _ = require('lodash');
 const products = require('../data/products.json');
 
-const lodashSolution = null;
+const lodashSolution = _.chain(products)
+  .groupBy('supplier')
+  .filter((group) => _.size(_.filter(group, (product) => product.stock < 25)) > 0)
+  .map((group) => ({
+    supplier: group[0].supplier,
+    productCount: _.size(group),
+    lowStockCount: _.chain(group)
+      .filter((product) => product.stock < 25)
+      .size()
+      .value(),
+  }))
+  .sortBy('supplier')
+  .orderBy(['lowStockCount'], ['desc'])
+  .value();
 
 console.log(lodashSolution);
 
