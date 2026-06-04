@@ -21,7 +21,7 @@ const lodashSolution = _.chain(products)
     stock: product.stock,
     totalUnitsSold: _.chain(product.sales).values().sum().value(),
   }))
-  .orderBy(['stock', 'asc', 'totalUnitsSold', 'desc'])
+  .orderBy(['stock', 'totalUnitsSold'], ['asc', 'desc'])
   .value();
 
 console.log(lodashSolution);
