@@ -2,7 +2,7 @@
 
 ## Instructions
 
-Choose 20 exercises and solve each one with Lodash.
+Choose **22 exercises** and solve each one with Lodash.
 
 You may use Lodash chaining if you want.
 
