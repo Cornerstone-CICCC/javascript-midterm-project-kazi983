@@ -11,8 +11,16 @@
 
 const _ = require('lodash');
 const countries = require('../data/countries.json');
-
-const lodashSolution = null;
+const lodashSolution = _.chain(countries)
+  .groupBy('region')
+  .mapValues((region) => {
+    return {
+      countryCount: _.size(region),
+      totalPopulation: _.sumBy(region, (country) => country.population),
+      averageGdpPerCapita: Math.round(_.meanBy(region, 'gdpPerCapita')),
+    };
+  })
+  .value();
 
 console.log(lodashSolution);
 
