@@ -11,7 +11,18 @@
 const _ = require('lodash');
 const products = require('../data/products.json');
 
-const lodashSolution = null;
+const lodashSolution = _.chain(products)
+  .reject(['discontinued', true])
+  .reject((product) => product.stock >= 25)
+  .map((product) => ({
+    id: product.id,
+    name: product.name,
+    supplier: product.supplier,
+    stock: product.stock,
+    totalUnitsSold: _.chain(product.sales).values().sum().value(),
+  }))
+  .orderBy(['stock', 'asc', 'totalUnitsSold', 'desc'])
+  .value();
 
 console.log(lodashSolution);
 
