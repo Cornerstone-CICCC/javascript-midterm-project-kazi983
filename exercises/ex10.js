@@ -12,7 +12,19 @@
 const _ = require('lodash');
 const students = require('../data/students.json');
 
-const lodashSolution = null;
+const lodashSolution = _.chain(students)
+  .map((student) => ({
+    id: student.id,
+    name: student.name,
+    campus: student.campus,
+    cohort: student.cohort,
+    average:
+      Math.round(_.meanBy([...student.courses, ...student.projects], 'score') * 10) /
+      10,
+  }))
+  .filter((student) => student.average > 85)
+  .orderBy('average', 'desc')
+  .value();
 
 console.log(lodashSolution);
 
