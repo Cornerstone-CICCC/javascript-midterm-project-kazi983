@@ -17,7 +17,20 @@
 const _ = require('lodash');
 const products = require('../data/products.json');
 
-const lodashSolution = null;
+const lodashSolution = _.chain(products)
+  .reject(['discontinued', true])
+  .groupBy('category')
+  .map((group) => ({
+    category: group[0].category,
+    productCount: _.size(group),
+    totalStock: _.sumBy(group, 'stock'),
+    totalUnitsSold: _.chain(group)
+      .map((product) => _.chain(product.sales).values().sum().value())
+      .sum()
+      .value(),
+  }))
+  .orderBy('totalUnitsSold', 'desc')
+  .value();
 
 console.log(lodashSolution);
 
