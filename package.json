@@ -1,0 +1,13 @@
+{
+  "name": "javascript-midterm",
+  "version": "1.0.0",
+  "private": true,
+  "description": "JavaScript midterm exercises using vanilla JS and Lodash.",
+  "main": "exercises/ex01.js",
+  "scripts": {
+    "start": "node exercises/ex01.js"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

@@ -1,0 +1,31 @@
+// Exercise 4: Language popularity
+//
+// Create a ranked list of languages used by countries.
+// Return the 10 most common languages.
+// Each item should include: language, countryCount.
+//
+// Requirement:
+// Provide a Lodash solution.
+
+const _ = require('lodash');
+const countries = require('../data/countries.json');
+
+const lodashSolution = null;
+
+console.log(lodashSolution);
+
+/*
+Expected output:
+[
+  { language: 'English', countryCount: 15 },
+  { language: 'French', countryCount: 10 },
+  { language: 'Arabic', countryCount: 5 },
+  { language: 'Swahili', countryCount: 4 },
+  { language: 'Hausa', countryCount: 2 },
+  { language: 'Portuguese', countryCount: 2 },
+  { language: 'Spanish', countryCount: 2 },
+  { language: 'Tamazight', countryCount: 2 },
+  { language: 'Afrikaans', countryCount: 1 },
+  { language: 'Akan', countryCount: 1 }
+]
+*/

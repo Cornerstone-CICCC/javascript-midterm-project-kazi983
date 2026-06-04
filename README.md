@@ -1,0 +1,44 @@
+# JavaScript Midterm
+
+## Instructions
+
+Solve each exercise with Lodash.
+
+You may use Lodash chaining if you want.
+
+Each exercise file contains one placeholder:
+
+```js
+const lodashSolution = null;
+```
+
+Replace `null` with your solution.
+
+## Setup
+
+```bash
+npm install
+```
+
+Run one exercise at a time:
+
+```bash
+node exercises/ex01.js
+```
+
+## Data
+
+The datasets are in the `data` folder:
+
+- `countries.json`: country, region, population, area, GDP, language, and geography data
+- `movies.json`: movie, genre, director, rating, box office, streaming, and award data
+- `products.json`: product, inventory, pricing, supplier, tag, and quarterly sales data
+- `students.json`: student, cohort, attendance, course, project, and skill data
+
+## Notes
+
+- Do not mutate the original data unless an exercise explicitly asks you to.
+- Round numbers exactly as requested in each exercise.
+- Sort results exactly as requested in each exercise.
+- Prefer readable code over the shortest possible code.
+- Compare your result with the expected output comment at the bottom of each exercise file.
