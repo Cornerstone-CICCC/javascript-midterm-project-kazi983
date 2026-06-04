@@ -12,7 +12,7 @@ const _ = require('lodash');
 const products = require('../data/products.json');
 
 const lodashSolution = _.chain(products)
-  .reject(['discount', false])
+  .reject(['discontinued', true])
   .forEach((product) => {
     product.marginPercent =
       Math.round(((product.price - product.cost) / product.price) * 1000) / 10;
