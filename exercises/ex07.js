@@ -10,8 +10,31 @@
 
 const _ = require('lodash');
 const products = require('../data/products.json');
+const { colorNames } = require('chalk');
 
-const lodashSolution = null;
+const lodashSolution = _.chain(products)
+  .groupBy('category')
+
+  .map((categoryGroup) => {
+    const topProductObj = _.chain(categoryGroup)
+      .map((product) => ({
+        productName: product.name,
+        totalUnits: _.chain(product.sales).values().sum().value(),
+      }))
+      .orderBy('totalUnits', 'desc')
+      .head()
+      .value();
+
+    return {
+      category: categoryGroup[0].category,
+      productName: topProductObj.productName,
+      totalUnits: topProductObj.totalUnits,
+    };
+  })
+
+  .orderBy('totalUnits', 'desc')
+
+  .value();
 
 console.log(lodashSolution);
 
