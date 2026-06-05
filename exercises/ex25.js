@@ -12,7 +12,28 @@
 const _ = require('lodash');
 const movies = require('../data/movies.json');
 
-const lodashSolution = null;
+const lodashSolution = _.chain(movies)
+  .forEach(
+    (movie) =>
+      (movie.decade = `${_.slice(movie.releaseYear.toString(), (start = 0), (end = 3)).join('')}0s`),
+  )
+
+  .groupBy('decade')
+
+  .map((decadeGroup) => {
+    const topRatedMovie = _.chain(decadeGroup).orderBy('rating', 'desc').head().value();
+
+    return {
+      decade: decadeGroup[0].decade,
+      title: topRatedMovie.title,
+      releaseYear: topRatedMovie.releaseYear,
+      rating: topRatedMovie.rating,
+    };
+  })
+
+  .sortBy('decade')
+
+  .value();
 
 console.log(lodashSolution);
 
