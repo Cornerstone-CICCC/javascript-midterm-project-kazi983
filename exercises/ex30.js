@@ -10,7 +10,14 @@
 const _ = require('lodash');
 const movies = require('../data/movies.json');
 
-const lodashSolution = null;
+const lodashSolution = _.chain(movies)
+  .groupBy('genre')
+  .map((group) => ({
+    genre: group[0].genre,
+    movieCount: _.size(group),
+  }))
+  .orderBy('genre', 'asc')
+  .value();
 
 console.log(lodashSolution);
 
