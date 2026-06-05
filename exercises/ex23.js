@@ -15,7 +15,23 @@
 const _ = require('lodash');
 const movies = require('../data/movies.json');
 
-const lodashSolution = null;
+const lodashSolution = _.chain(movies)
+  .groupBy('country')
+  .map((countryGroup) => ({
+    country: countryGroup[0].country,
+    awardWinningMovieCount: _.chain(countryGroup)
+      .reduce((sum, movie) => (movie.awards.length > 0 ? sum + 1 : sum), 0)
+      .value(),
+    titles: _.chain(countryGroup)
+      .filter((movie) => movie.awards.length > 0)
+      .map((movie) => movie.title)
+      .sort()
+      .value(),
+  }))
+  .filter('awardWinningMovieCount', true)
+  .sortBy('country')
+  .orderBy('awardWinningMovieCount', 'desc')
+  .value();
 
 console.log(lodashSolution);
 
