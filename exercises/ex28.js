@@ -11,8 +11,7 @@ const _ = require('lodash');
 const students = require('../data/students.json');
 
 const lodashSolution = _.chain(students)
-  .filter(['status', 'active'])
-  .filter(['campus', 'Vancouver'])
+  .filter({ status: 'active', campus: 'Vancouver' })
   .map((student) => ({
     name: student.name,
     cohort: student.cohort,
