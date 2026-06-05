@@ -15,10 +15,34 @@
 // Requirement:
 // Provide a Lodash solution.
 
+// chain, groupBy, map, sortBy, value, orderBy
+
 const _ = require('lodash');
 const movies = require('../data/movies.json');
 
-const lodashSolution = null;
+const lodashSolution = _.chain(movies)
+  .forEach(
+    (movie) =>
+      (movie.bucket =
+        movie.runtimeMinutes < 100
+          ? 'short'
+          : movie.runtimeMinutes < 120
+            ? 'standard'
+            : 'long'),
+  )
+  .groupBy('bucket')
+  .map((bucketGroup) => ({
+    bucket: bucketGroup[0].bucket,
+    movieCount: _.size(bucketGroup),
+    titles: _.chain(bucketGroup)
+      .map((movie) => movie.title)
+      .sort()
+      .value(),
+  }))
+  .orderBy((bucketGroup) =>
+    bucketGroup.bucket === 'short' ? 1 : bucketGroup.bucket === 'standard' ? 2 : 3,
+  )
+  .value();
 
 console.log(lodashSolution);
 
