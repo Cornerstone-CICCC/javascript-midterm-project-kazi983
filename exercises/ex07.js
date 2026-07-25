@@ -10,7 +10,7 @@
 
 const _ = require('lodash');
 const products = require('../data/products.json');
-const { colorNames } = require('chalk');
+const { colorNames } = require('chalk'); // Feedback: This extra dependency is not installed or needed, so the exercise errors before your Lodash solution can run.
 
 const lodashSolution = _.chain(products)
   .groupBy('category')
